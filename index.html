@@ -5,23 +5,14 @@
 		<meta name=viewport content="width=device-width, initial-scale=1">
 		<title>Has Ryan Put Humans on the Moon Yet?</title>
 <script type="text/javascript"><!--
-function iify() {
+function daysPassed() {
 	now = new Date();
-    today = now.getDay();
-    daywanted = 5;
-    offset = today - daywanted;
-	switch (offset) {
-		case -1:
-		case 6:
-			return ("Almost.");
-		case 0:
-			return ("Yep.");	
-		case 1:
-		case -6:
-			return ("You just missed it.");
-		default:
-			return ("Nope.");
-	}
+    start_date = new Date("06/15/2020");
+    
+    difference_in_time = Math.round(now.getTime() - start_date.getTime());
+    difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
+
+    return difference_in_days;
 }
 
 //-->
@@ -43,7 +34,8 @@ body {margin: 0; padding: 0; font-family: Verdana,Geneva,sans-serif;}
 	<div id="outer">
 		<div id="upper">
 			<div id="content">
-				<span class="big"><script>document.write(iify());</script></span>
+				<span class="big">Ryan Cole has worked at Dynetics for <script>document.write(daysPassed());</script> days and still hasn't
+                put humans on the moon yet.</span>
 			</div>		
 		</div>
 		<div id="lower">
