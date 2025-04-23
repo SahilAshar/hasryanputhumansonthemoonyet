@@ -4,48 +4,74 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Confetti script (loads fast, async-friendly) -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"
+        defer></script>
+
 <script type="text/javascript">
 
-function daysPassedForDynetics() {
-    const start_date = new Date("06/15/2020");
-    const end_date = new Date("07/28/2021");
+    function daysPassedForDynetics() {
+        const start_date = new Date("06/15/2020");
+        const end_date = new Date("07/28/2021");
 
-    const difference_in_time = Math.round(end_date.getTime() - start_date.getTime());
-    const difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
+        const difference_in_time = Math.round(end_date.getTime() - start_date.getTime());
+        const difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
 
-    return difference_in_days;
-}
+        return difference_in_days;
+    }
 
-function daysPassedForFirefly() {
-    const now = new Date();
-    const start_date = new Date("08/09/2021");
+    function daysPassedForFirefly() {
+        const now = new Date();
+        const start_date = new Date("08/09/2021");
 
-    const difference_in_time = Math.round(now.getTime() - start_date.getTime());
-    const difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
+        const difference_in_time = Math.round(now.getTime() - start_date.getTime());
+        const difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
 
-    return difference_in_days;
-}
+        return difference_in_days;
+    }
 
-// Days since Blue Ghost touched down (March 2, 2025 08:34 UTC)
-function daysSinceBGLanding() {
-    const now = new Date();
-    const landing = new Date("2025-03-02T08:34:00Z");
+    // Days since Blue Ghost touched down (March 2, 2025 08:34 UTC)
+    function daysSinceBGLanding() {
+        const now = new Date();
+        const landing = new Date("2025-03-02T08:34:00Z");
 
-    const difference_in_time = Math.round(now.getTime() - landing.getTime());
-    const difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
+        const difference_in_time = Math.round(now.getTime() - landing.getTime());
+        const difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
 
-    return difference_in_days;
-}
+        return difference_in_days;
+    }
 
-//-->
+    // Build the banner text once the DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+        const landingUTC  = new Date('2025-03-02T08:34:00Z');
+        const localString = landingUTC.toLocaleString(undefined, {
+            dateStyle: 'long',   // e.g. March 2, 2025
+            timeStyle: 'short'   // e.g. 2:34 AM
+        });
+
+        const banner = document.getElementById('landing-message');
+        if (banner) {
+            banner.textContent =
+                `On ${localString}, Ryan Cole’s Spectre RCS engines ` +
+                `put Firefly Aerospace's Blue Ghost lander on the Moon ` +
+                `(${daysSinceBGLanding()} days ago)!`;
+        }
+
+        // Fire the confetti once, right after first paint
+        if (window.confetti) {
+            confetti({ particleCount: 200, spread: 70, origin: { y: 0.6 } });
+        }
+    });
 </script>
+
 <style type="text/css" media="screen">
 * { box-sizing: border-box; }
 body { margin: 0; padding: 0; font-family: Verdana, Geneva, sans-serif; }
-#outer { position: absolute; display: table; width: 100%; height: 99%; margin: 0 auto; }
-#upper, #second, #third, #lower { display: table-row; width: 100%; padding-left: 10%; padding-right: 10%; }
+#outer { display: table; width: 100%; min-height: 100vh; margin: 0 auto; }
+#upper, #second, #third { display: table-row; width: 100%; padding-left: 10%; padding-right: 10%; }
 #upper, #second, #third { height: 40%; }
-#lower { height: 100%; }
+#lower { /* inherits natural height */ }
 #text, #tweet { position: relative; display: table-cell; text-align: center; }
 #text { padding-top: 3%; }
 #footer { position: relative; display: block; text-align: center; }
@@ -53,11 +79,26 @@ body { margin: 0; padding: 0; font-family: Verdana, Geneva, sans-serif; }
 .credit { font-size: 9pt; color: #666; margin-top: 1.5em; }
 .credit a { color: #666; text-decoration: none; border-bottom: 1px dotted #999; }
 .credit a:hover { color: #000; border-bottom: 1px solid #000; }
+
+#landing-banner {
+    display: flex; justify-content: center; align-items: center;
+    padding: 1em 8vw; text-align: center;
+    background: #0f0f0f; color: #fff; 
+}
+#landing-banner .victory { font-size: 1.6rem; line-height: 1.4; }
+@media (min-width: 600px) {
+    #landing-banner .victory { font-size: 2rem; }
+}
 </style>
 
     </head>
 
     <body bgcolor="#ffffff">
+    <div id="landing-banner">
+        <div class="victory">
+            <span id="landing-message" class="victory"></span>
+        </div>
+    </div>
     <div id="outer">
         <div id="upper">
             <div id="text">
