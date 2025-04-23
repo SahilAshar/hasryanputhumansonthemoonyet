@@ -1,27 +1,38 @@
 <!doctype html>
 <html>
-	<head>
-		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
-		<meta name=viewport content="width=device-width, initial-scale=1">
-		<title>Has Ryan Put Humans on the Moon Yet?</title>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <title>Has Ryan Put Humans on the Moon Yet?</title>
 <script type="text/javascript">
 
 function daysPassedForDynetics() {
-    start_date = new Date("06/15/2020");
-	end_date = new Date("07/28/2021")
-    
-    difference_in_time = Math.round(end_date.getTime() - start_date.getTime());
-    difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
+    const start_date = new Date("06/15/2020");
+    const end_date = new Date("07/28/2021")
+
+    const difference_in_time = Math.round(end_date.getTime() - start_date.getTime());
+    const difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
 
     return difference_in_days;
 }
 
 function daysPassedForFirefly() {
-	now = new Date();
-    start_date = new Date("08/09/2021");
-    
-    difference_in_time = Math.round(now.getTime() - start_date.getTime());
-    difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
+    const now = new Date();
+    const start_date = new Date("08/09/2021");
+
+    const difference_in_time = Math.round(now.getTime() - start_date.getTime());
+    const difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
+
+    return difference_in_days;
+}
+
+// Days since Blue Ghost touched down (March 2, 2025 08:34 UTC)
+function daysSinceBGLanding() {
+    const now = new Date();
+    const landing = new Date("2025-03-02T08:34:00Z");
+
+    const difference_in_time = Math.round(now.getTime() - landing.getTime());
+    const difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
 
     return difference_in_days;
 }
