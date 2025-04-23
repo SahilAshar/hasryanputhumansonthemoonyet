@@ -1,107 +1,74 @@
 <!doctype html>
-<html>
-	<head>
-		<meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
-		<meta name=viewport content="width=device-width, initial-scale=1">
-		<title>Has Ryan Put Humans on the Moon Yet?</title>
-<script type="text/javascript">
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Has Ryan Put Humans on the Moon Yet?</title>
 
-function daysPassedForDynetics() {
-    start_date = new Date("06/15/2020");
-	end_date = new Date("07/28/2021")
-    
-    difference_in_time = Math.round(end_date.getTime() - start_date.getTime());
-    difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
+  <!-- external stylesheet -->
+  <link rel="stylesheet" href="styles.css">
 
-    return difference_in_days;
-}
+  <!-- Confetti script (loads fast, async-friendly) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js" defer></script>
 
-function daysPassedForFirefly() {
-	now = new Date();
-    start_date = new Date("08/09/2021");
-    
-    difference_in_time = Math.round(now.getTime() - start_date.getTime());
-    difference_in_days = (difference_in_time / (1000 * 3600 * 24)).toFixed(0);
+  <script>
+    /* ---------- JS helpers ---------- */
+    const toDays = (from, to = Date.now()) =>
+      Math.floor((to - from) / 8.64e7).toLocaleString();
 
-    return difference_in_days;
-}
+    const daysPassedForDynetics  = () => toDays(Date.parse('2020-06-15'), Date.parse('2021-07-28'));
+    const daysPassedForFirefly   = () => toDays(Date.parse('2021-08-09'));
+    const daysSinceBGLanding     = () => toDays(Date.parse('2025-03-02T08:34:00Z'));
 
-//-->
-</script>
-<style type="text/css" media="screen"><!--
-* { box-sizing: border-box; }
-body {margin: 0; padding: 0; font-family: Verdana,Geneva,sans-serif;}
-#outer { position: absolute; display: table; width: 100%; height: 99%; margin: 0 auto; }
-#upper { display: table-row; width: 100%; height: 40%; padding-left: 10%; padding-right: 10%;}
-#second { display: table-row; width: 100%; height: 40%; padding-left: 10%; padding-right: 10%;}
-#third { display: table-row; width: 100%; height: 40%; padding-left: 10%; padding-right: 10%;}
-#lower { display: table-row; width: 100%; height: 100%}
-#text { position: relative; display: table-cell; text-align: center; padding-top: 3%; padding-left: 10%; padding-right: 10%;}
-#tweet { position: relative; display: table-cell; text-align: center; }
-#footer { position: relative; display: block; text-align: center; }
-.big { font-size: 36pt; }
---></style>
+    document.addEventListener('DOMContentLoaded', () => {
+      const landingUTC = new Date('2025-03-02T08:34:00Z');
+      document.getElementById('landing-message').textContent =
+        `On ${landingUTC.toLocaleString(undefined,{dateStyle:'long',timeStyle:'short'})}, `+
+        `Ryan Cole's Spectre RCS engines put Firefly Aerospace's Blue Ghost lander on the Moon `+
+        `(${daysSinceBGLanding()} days ago)!`;
 
-	</head>
+      if (window.confetti) confetti({particleCount:200,spread:70,origin:{y:0.6}});
 
-	<body bgcolor="#ffffff">
-	<div id="outer">
-		<div id="upper">
-			<div id="text">
-				<span class="big">Ryan Cole has worked at Firefly for <script>document.write(daysPassedForFirefly());</script> 
-                days and still hasn't put <strike>humans</strike> whatever this payload is on the moon.</span> 
-			</div>	
-		</div>
-		<div id="second">
-			<div id="tweet">
-				<blockquote class="twitter-tweet tw-align-center">
-					<p lang="en" dir="ltr">Firefly is GO for a mission to the Dark Side of the Moon! We’ve been awarded 
-						a 2nd NASA contract, delivering payloads to lunar orbit and on the far side of the Moon, building 
-						the infrastructure for ongoing lunar opportunities and planetary exploration. 
-						<a href="https://t.co/B8p00l1tRl">https://t.co/B8p00l1tRl</a> 
-						<a href="https://t.co/PnsbpOqfrL">pic.twitter.com/PnsbpOqfrL</a>
-					</p>&mdash; Firefly Aerospace (@Firefly_Space) 
-					<a href="https://twitter.com/Firefly_Space/status/1635737233478107136?ref_src=twsrc%5Etfw">March 14, 2023</a>
-				</blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
-			</div>
-		</div>
-		<div id="second">
-			<div id="tweet">
-				<blockquote class="twitter-tweet tw-align-center">
-					<p lang="en" dir="ltr">
-						Firefly is pleased to announce we selected SpaceX to launch our Blue Ghost lunar lander 
-						for the NASA CLPS 19D mission. We’re excited to leverage the performance and reliability of 
-						Falcon 9 to propel Blue Ghost on the first phase of its journey to the Moon! 
-						<a href="https://t.co/YLJJK8rlLd">https://t.co/YLJJK8rlLd</a>
-					</p>&mdash; Firefly Aerospace (@Firefly_Space) 
-					<a href="https://twitter.com/Firefly_Space/status/1395381303265091584?ref_src=twsrc%5Etfw">May 20, 2021</a>
-				</blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
-			</div>
-		</div>
-		<div id="second">
-			<div id="text">
-				<span class="big">Ryan Cole worked at Dynetics for <script>document.write(daysPassedForDynetics());</script> 
-                days and <strike>still hasn't</strike> did not put humans on the moon.</span>
-			</div>
-		</div>
-		<div id="lower">
-			<div id="footer">
-				<blockquote class="twitter-tweet tw-align-center">
-					<p lang="en" dir="ltr">
-						<a href="https://twitter.com/NASA?ref_src=twsrc%5Etfw">@NASA</a> has selected 
-						<a href="https://twitter.com/SpaceX?ref_src=twsrc%5Etfw">@SpaceX</a> to continue 
-						the development of its Human Landing System for the 
-						<a href="https://twitter.com/hashtag/Artemis?src=hash&amp;ref_src=twsrc%5Etfw">
-						\#Artemis</a> program.
-						<br><br>
-						The Human Landing System will take astronauts from lunar orbit to the lunar surface and back. 
-						Read the full announcement: <a href="https://t.co/tkojemwUUr">https://t.co/tkojemwUUr</a> 
-						<a href="https://t.co/bvOX6DQsXA">pic.twitter.com/bvOX6DQsXA</a>
-					</p> &mdash; NASA’s Artemis Program (@NASAArtemis) 
-					<a href="https://twitter.com/NASAArtemis/status/1383156226360492035?ref_src=twsrc%5Etfw">April 16, 2021</a>
-				</blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
-			</div>
-		</div>
-	</div>
-	</body>
+      document.querySelectorAll('[data-dynetics]').forEach(el=>el.textContent=daysPassedForDynetics());
+      document.querySelectorAll('[data-firefly]').forEach(el=>el.textContent=daysPassedForFirefly());
+    });
+  </script>
+</head>
+<body>
+  <header id="landing-banner">
+    <span id="landing-message" class="victory"></span>
+  </header>
+
+  <main id="outer">
+    <section id="at-firefly" class="section">
+      <p class="big">Ryan Cole has worked at Firefly for <span data-firefly></span> days and still hasn't put <strike>humans</strike> whatever this payload is on the moon.</p>
+    </section>
+
+    <section class="section">
+      <blockquote class="twitter-tweet tw-align-center">
+        <p lang="en" dir="ltr">Firefly is GO for a mission to the Dark Side of the Moon! We've been awarded a 2nd NASA contract …</p>&mdash; Firefly Aerospace (@Firefly_Space) <a href="https://twitter.com/Firefly_Space/status/1635737233478107136">March 14, 2023</a>
+      </blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </section>
+
+    <section class="section">
+      <blockquote class="twitter-tweet tw-align-center">
+        <p lang="en" dir="ltr">Firefly is pleased to announce we selected SpaceX to launch our Blue Ghost lunar lander …</p>&mdash; Firefly Aerospace (@Firefly_Space) <a href="https://twitter.com/Firefly_Space/status/1395381303265091584">May 20, 2021</a>
+      </blockquote>
+    </section>
+
+    <section id="at-dynetics" class="section">
+      <p class="big">Ryan Cole worked at Dynetics for <span data-dynetics></span> days and <strike>still hasn't</strike> did not put humans on the moon.</p>
+    </section>
+
+    <section class="section">
+      <blockquote class="twitter-tweet tw-align-center">
+        <p lang="en" dir="ltr"><a href="https://twitter.com/NASA">@NASA</a> has selected <a href="https://twitter.com/SpaceX">@SpaceX</a> to continue the development …</p>&mdash; NASA's Artemis Program (@NASAArtemis) <a href="https://twitter.com/NASAArtemis/status/1383156226360492035">April 16, 2021</a>
+      </blockquote>
+    </section>
+  </main>
+
+  <footer class="credit">
+    © 2025 <a href="https://sahilashar.com" target="_blank" rel="noopener">Sahil Ashar</a> - <a href="https://github.com/sahilashar/hasryanputhumansonthemoonyet" target="_blank" rel="noopener">view source on GitHub</a>
+  </footer>
+</body>
 </html>

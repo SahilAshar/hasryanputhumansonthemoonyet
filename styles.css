@@ -1,0 +1,20 @@
+:root { --max-w: 720px; }
+*{box-sizing:border-box;margin:0}
+body{font-family:Verdana, Geneva, sans-serif;line-height:1.4;background:#fff;color:#000}
+
+/* ---- layout ---- */
+#landing-banner{display:flex;justify-content:center;align-items:center;padding:1em 8vw;background:#0f0f0f;color:#fff;text-align:center}
+#landing-banner .victory{font-size:1.6rem}
+@media(min-width:600px){#landing-banner .victory{font-size:2rem}}
+
+#outer{display:flex;flex-direction:column;align-items:center;gap:4rem;width:100%;min-height:100vh;margin:0 auto}
+.section{width:100%;max-width:var(--max-w);padding:0 5%;display:flex;flex-direction:column;align-items:center}
+
+/* ---- content blocks ---- */
+.big{font-size:32pt;line-height:1.15;max-width:var(--max-w);margin:0 auto;text-align:center}
+.credit{font-size:9pt;color:#666;margin-top:1.5em;text-align:center}
+.credit a{color:#666;text-decoration:none;border-bottom:1px dotted #999}
+.credit a:hover{color:#000;border-bottom:1px solid #000}
+
+/* tweet sizing */
+.twitter-tweet{width:100%!important;max-width:550px!important;margin:0 auto}
